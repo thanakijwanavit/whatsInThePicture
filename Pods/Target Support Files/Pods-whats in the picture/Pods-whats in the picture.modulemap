@@ -1,0 +1,6 @@
+framework module Pods_whats_in_the_picture {
+  umbrella header "Pods-whats in the picture-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,14 @@
+{
+    "ios": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-whatsinthepicture-ios-201451-authRole",
+            "UnauthRoleArn": "arn:aws:iam::277726656832:role/amplify-whatsinthepicture-ios-201451-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::277726656832:role/amplify-whatsinthepicture-ios-201451-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "amplify-whatsinthepicture-ios-201451-deployment",
+            "UnauthRoleName": "amplify-whatsinthepicture-ios-201451-unauthRole",
+            "StackName": "amplify-whatsinthepicture-ios-201451",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:277726656832:stack/amplify-whatsinthepicture-ios-201451/14ae0000-0ef7-11ea-9e2c-020de04cec9a"
+        }
+    }
+}
