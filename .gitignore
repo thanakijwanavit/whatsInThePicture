@@ -9,3 +9,6 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
+lambdaClassifier/lambdaFunction/lib/python3.6/lambdaFunction.zip
+lambdaClassifier/lambdaFunction/lib/python3.6/testdir
+lambdaClassifier/lambdaFunction/lib/python3.6/site-packages/torch*
