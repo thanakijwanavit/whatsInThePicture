@@ -21,7 +21,20 @@ class ResultViewController:UIViewController{
     
     @IBOutlet weak var pageTitle: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var classificationResultLabel: UILabel!
     
+    
+    
+    //debug bbutton for testing uploading image
+    
+    @IBOutlet weak var uploadDataButton: UIButton!
+    
+    
+    
+    
+    @IBAction func uploadDataButtonClicked(_ sender: Any) {
+//        convertAndUploadToS3()
+    }
     
     override func viewDidLoad() {
         if addingImage{
@@ -30,13 +43,40 @@ class ResultViewController:UIViewController{
         
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         photoModel = getFetchedObject()
-        if let imageData = photoModel?.imageData{
-            imageView.image = UIImage(data: imageData)
-        } else {
-            debugPrint("photo doesnt exist")
+        
+        //check for classification result and s3 path
+        if photoModel?.classificationResult == "waiting for classification" {
+            if photoModel?.s3Path == nil {
+                
+                guard photoModel != nil else {
+                    debugPrint("photoModel doesnt exist. data is corrupted please delete the image")
+                    return
+                }
+                if let photoModel = photoModel {
+                    AWSClientFunctions.convertAndUploadToS3(imageToScaleAndUpload: UIImage(data: photoModel.imageData!)! , filename: photoModel.objectHash!) { (s3Path, scaledImage, error) in
+                        guard error == nil else {
+                            debugPrint("error uploading item \(error.debugDescription)")
+                            return
+                        }
+                        photoModel.s3Path = s3Path
+                        photoModel.resizedImage = scaledImage?.pngData()
+                        do {
+                            try self.dataController.viewContext.save()
+                        } catch {
+                            debugPrint("error saving \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
         }
+        
+        
+        
+        configureUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,5 +142,28 @@ extension ResultViewController{
         }
         debugPrint("object is not found")
         return nil
+    }
+    
+    
+    fileprivate func configureUI() {
+        pageTitle.text = photoModel?.name
+        
+        let classificationResult = photoModel?.classificationResult
+        if classificationResult != "waiting for classification"{
+            debugPrint("classificationResult available \(String(describing: classificationResult))")
+            self.classificationResultLabel.text = classificationResult
+        } else {
+            debugPrint("classificationResult unavailable")
+            self.classificationResultLabel.text = "classification result not available"
+        }
+        
+        if let imageData = photoModel?.imageData{
+            imageView.image = UIImage(data: imageData)
+        } else {
+            debugPrint("photo doesnt exist")
+        }
+        
+        // set button name
+//        uploadDataButton.setTitle("upload", for: .normal)
     }
 }

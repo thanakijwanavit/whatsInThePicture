@@ -19,14 +19,20 @@ class PhotoCell:UICollectionViewCell{
     
     
     
-    func initWithPhoto(_ photo: PhotoModel) {
+    func initWithPhoto(_ photo: PhotoModel,debug: Bool) {
         
         if photo.imageData != nil {
-            print("photo data exist")
+//            print("photo data exist")
             DispatchQueue.main.async {
                 
                 self.imageToDisplay.image = UIImage(data: photo.imageData! as Data)
-                self.title.text = photo.name
+                if debug{
+                    debugPrint("debugging, displaying aws path")
+                    self.title.text = photo.s3Path
+                } else {
+                    self.title.text = photo.name
+                }
+                
                 self.activityIndicator.stopAnimating()
             }
             

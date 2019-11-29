@@ -7,8 +7,10 @@
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="objectHash" optional="YES" attributeType="String"/>
+        <attribute name="resizedImage" optional="YES" attributeType="Binary"/>
+        <attribute name="s3Path" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="PhotoModel" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="PhotoModel" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

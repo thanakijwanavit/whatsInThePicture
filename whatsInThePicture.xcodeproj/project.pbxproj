@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0435E88B238B282100D2A5A3 /* MLCLASSIFICATIONRequestSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435E887238B282100D2A5A3 /* MLCLASSIFICATIONRequestSchema.swift */; };
+		0435E88C238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435E888238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift */; };
+		0435E88D238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435E88A238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift */; };
+		0435E88F238B29F900D2A5A3 /* AWSClientFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435E88E238B29F900D2A5A3 /* AWSClientFunctions.swift */; };
+		045547CF238C869900415C00 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045547CE238C869900415C00 /* UtilityFunctions.swift */; };
 		046D3DE8238977C80072D159 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D3DE7238977C80072D159 /* DataController.swift */; };
 		048B3E5F23894ABB0038EDA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B3E5E23894ABB0038EDA0 /* AppDelegate.swift */; };
 		048B3E6123894ABB0038EDA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B3E6023894ABB0038EDA0 /* SceneDelegate.swift */; };
@@ -20,11 +25,20 @@
 		048B3E8223895E030038EDA0 /* PhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B3E8123895E030038EDA0 /* PhotoCollection.swift */; };
 		048B3E86238967420038EDA0 /* PhotoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 048B3E84238967420038EDA0 /* PhotoModel.xcdatamodeld */; };
 		04A7C577238B1D5500445559 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 04A7C576238B1D5500445559 /* awsconfiguration.json */; };
+		04A7C579238B20E100445559 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7C578238B20E100445559 /* API.swift */; };
+		04A7C57B238B225F00445559 /* sampleVIewControllerForAmplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7C57A238B225F00445559 /* sampleVIewControllerForAmplify.swift */; };
 		04FC68352389ED1F00EAA349 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC68342389ED1F00EAA349 /* PinterestLayout.swift */; };
 		F25D15467BC720A320F629B6 /* Pods_whats_in_the_picture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD22A1A774A4AC4F3D28FBB /* Pods_whats_in_the_picture.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0435E886238B282100D2A5A3 /* AWSApiGatewayBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSApiGatewayBridge.h; sourceTree = "<group>"; };
+		0435E887238B282100D2A5A3 /* MLCLASSIFICATIONRequestSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCLASSIFICATIONRequestSchema.swift; sourceTree = "<group>"; };
+		0435E888238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCLASSIFICATIONMLClassificationClient.swift; sourceTree = "<group>"; };
+		0435E889238B282100D2A5A3 /* Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
+		0435E88A238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCLASSIFICATIONResponseSchema.swift; sourceTree = "<group>"; };
+		0435E88E238B29F900D2A5A3 /* AWSClientFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSClientFunctions.swift; sourceTree = "<group>"; };
+		045547CE238C869900415C00 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		046D3DE7238977C80072D159 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		048B3E5B23894ABB0038EDA0 /* whatsInThePicture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whatsInThePicture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		048B3E5E23894ABB0038EDA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +54,8 @@
 		048B3E8123895E030038EDA0 /* PhotoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollection.swift; sourceTree = "<group>"; };
 		048B3E85238967420038EDA0 /* PhotoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoModel.xcdatamodel; sourceTree = "<group>"; };
 		04A7C576238B1D5500445559 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		04A7C578238B20E100445559 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		04A7C57A238B225F00445559 /* sampleVIewControllerForAmplify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleVIewControllerForAmplify.swift; sourceTree = "<group>"; };
 		04FC68342389ED1F00EAA349 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		97740D0738DB0F468C6C6C1E /* Pods-whats in the picture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whats in the picture.debug.xcconfig"; path = "Target Support Files/Pods-whats in the picture/Pods-whats in the picture.debug.xcconfig"; sourceTree = "<group>"; };
 		A7856064F94FC832F463E56A /* Pods-whats in the picture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whats in the picture.release.xcconfig"; path = "Target Support Files/Pods-whats in the picture/Pods-whats in the picture.release.xcconfig"; sourceTree = "<group>"; };
@@ -58,12 +74,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04240FB3238BAA2D005B932B /* keys */ = {
+			isa = PBXGroup;
+			children = (
+				04A7C578238B20E100445559 /* API.swift */,
+			);
+			path = keys;
+			sourceTree = "<group>";
+		};
+		0435E885238B282100D2A5A3 /* generated-src */ = {
+			isa = PBXGroup;
+			children = (
+				0435E886238B282100D2A5A3 /* AWSApiGatewayBridge.h */,
+				0435E887238B282100D2A5A3 /* MLCLASSIFICATIONRequestSchema.swift */,
+				0435E888238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift */,
+				0435E889238B282100D2A5A3 /* Bridging_Header.h */,
+				0435E88A238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift */,
+			);
+			path = "generated-src";
+			sourceTree = "<group>";
+		};
+		0435E890238B2A0200D2A5A3 /* generalFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				0435E88E238B29F900D2A5A3 /* AWSClientFunctions.swift */,
+				045547CE238C869900415C00 /* UtilityFunctions.swift */,
+			);
+			path = generalFunctions;
+			sourceTree = "<group>";
+		};
 		048B3E5223894ABB0038EDA0 = {
 			isa = PBXGroup;
 			children = (
-				04A7C576238B1D5500445559 /* awsconfiguration.json */,
+				0435E885238B282100D2A5A3 /* generated-src */,
+				04240FB3238BAA2D005B932B /* keys */,
 				048B3E5D23894ABB0038EDA0 /* whatsInThePicture */,
 				048B3E5C23894ABB0038EDA0 /* Products */,
+				04A7C576238B1D5500445559 /* awsconfiguration.json */,
 				82E32AFF99C61D7CE3329A08 /* Pods */,
 				38B3D511386D26B1FCEFBB73 /* Frameworks */,
 			);
@@ -83,21 +130,22 @@
 				048B3E83238967160038EDA0 /* CoreData */,
 				048B3E7E23895D9C0038EDA0 /* View */,
 				048B3E7723894AF30038EDA0 /* viewControllers */,
-				048B3E7523894AC70038EDA0 /* whats in the picture */,
+				048B3E7523894AC70038EDA0 /* delegates */,
 				048B3E7623894AE00038EDA0 /* storyboard */,
 				048B3E6A23894ABC0038EDA0 /* Assets.xcassets */,
 				048B3E6F23894ABC0038EDA0 /* Info.plist */,
+				0435E890238B2A0200D2A5A3 /* generalFunctions */,
 			);
 			path = whatsInThePicture;
 			sourceTree = "<group>";
 		};
-		048B3E7523894AC70038EDA0 /* whats in the picture */ = {
+		048B3E7523894AC70038EDA0 /* delegates */ = {
 			isa = PBXGroup;
 			children = (
 				048B3E5E23894ABB0038EDA0 /* AppDelegate.swift */,
 				048B3E6023894ABB0038EDA0 /* SceneDelegate.swift */,
 			);
-			path = "whats in the picture";
+			path = delegates;
 			sourceTree = "<group>";
 		};
 		048B3E7623894AE00038EDA0 /* storyboard */ = {
@@ -115,6 +163,7 @@
 				048B3E7823894B7A0038EDA0 /* OverviewViewController.swift */,
 				048B3E7A23895A1D0038EDA0 /* ResultViewController.swift */,
 				048B3E7C23895A2C0038EDA0 /* PictureTakingViewController.swift */,
+				04A7C57C238B226900445559 /* examples */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -136,6 +185,14 @@
 				046D3DE7238977C80072D159 /* DataController.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		04A7C57C238B226900445559 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				04A7C57A238B225F00445559 /* sampleVIewControllerForAmplify.swift */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		38B3D511386D26B1FCEFBB73 /* Frameworks */ = {
@@ -271,16 +328,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A7C579238B20E100445559 /* API.swift in Sources */,
+				04A7C57B238B225F00445559 /* sampleVIewControllerForAmplify.swift in Sources */,
 				048B3E8023895DAD0038EDA0 /* PhotoCell.swift in Sources */,
 				048B3E7D23895A2C0038EDA0 /* PictureTakingViewController.swift in Sources */,
+				0435E88C238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift in Sources */,
 				048B3E5F23894ABB0038EDA0 /* AppDelegate.swift in Sources */,
+				0435E88F238B29F900D2A5A3 /* AWSClientFunctions.swift in Sources */,
 				048B3E7923894B7A0038EDA0 /* OverviewViewController.swift in Sources */,
+				0435E88B238B282100D2A5A3 /* MLCLASSIFICATIONRequestSchema.swift in Sources */,
 				048B3E6123894ABB0038EDA0 /* SceneDelegate.swift in Sources */,
 				046D3DE8238977C80072D159 /* DataController.swift in Sources */,
 				04FC68352389ED1F00EAA349 /* PinterestLayout.swift in Sources */,
+				045547CF238C869900415C00 /* UtilityFunctions.swift in Sources */,
 				048B3E86238967420038EDA0 /* PhotoModel.xcdatamodeld in Sources */,
 				048B3E8223895E030038EDA0 /* PhotoCollection.swift in Sources */,
 				048B3E7B23895A1D0038EDA0 /* ResultViewController.swift in Sources */,
+				0435E88D238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "nic.whats-in-the-picture";
 				PRODUCT_NAME = whatsInThePicture;
+				SWIFT_OBJC_BRIDGING_HEADER = "generated-src/Bridging_Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,6 +518,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "nic.whats-in-the-picture";
 				PRODUCT_NAME = whatsInThePicture;
+				SWIFT_OBJC_BRIDGING_HEADER = "generated-src/Bridging_Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

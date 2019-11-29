@@ -9,6 +9,11 @@
             "UnauthRoleName": "amplify-whatsinthepicture-ios-201451-unauthRole",
             "StackName": "amplify-whatsinthepicture-ios-201451",
             "StackId": "arn:aws:cloudformation:ap-southeast-1:277726656832:stack/amplify-whatsinthepicture-ios-201451/14ae0000-0ef7-11ea-9e2c-020de04cec9a"
+        },
+        "categories": {
+            "auth": {
+                "cognito9dd1a75d": {}
+            }
         }
     }
 }

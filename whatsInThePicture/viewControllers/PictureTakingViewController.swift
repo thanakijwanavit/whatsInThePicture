@@ -19,9 +19,24 @@ class PictureTakingViewController:UIViewController{
     @IBOutlet weak var titleName: UILabel!
     @IBOutlet var longPressRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBAction func completeTakingPhoto(_ sender: UIButton) {
-        saveToCoreData()
-        finishedTakingPhoto()
+        debugPrint("uploadingStart")
+        DispatchQueue.main.async {
+            self.imageView.isHidden = true
+            self.activityIndicator.startAnimating()
+        }
+        saveToCoreData { (success, error) in
+            guard error == nil else {
+                return
+            }
+            debugPrint("finishedTakingPhotoCalled")
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+            }
+            self.finishedTakingPhoto()
+        }
     }
     @IBAction func chageImageNameTapped(_ sender: Any) {
         changeImageName()
@@ -34,6 +49,7 @@ class PictureTakingViewController:UIViewController{
     }
 
     override func viewDidLoad() {
+        activityIndicator.stopAnimating()
         pictureProcessingComplete = false
         titleName.text = randomString(length: 5)
         userChooseImage()
@@ -58,7 +74,7 @@ extension PictureTakingViewController{
     }
     
     
-    func saveToCoreData(){
+    func saveToCoreData(completion:@escaping (Bool,Error?)->Void){
         let photoObject = PhotoModel(context: dataController.viewContext)
         photoObject.imageData = self.currentImage?.pngData()
         photoObject.creationDate = Date()
@@ -67,13 +83,35 @@ extension PictureTakingViewController{
         photoObject.objectHash = randomString(length: 20)
         self.objectHash = photoObject.objectHash
         debugPrint("objecthash is \(String(describing: photoObject.objectHash))")
-        do {
-            try dataController.viewContext.save()
-        } catch {
-            debugPrint("error saving \(error.localizedDescription)")
+        AWSClientFunctions.convertAndUploadToS3(imageToScaleAndUpload: self.currentImage!, filename: photoObject.objectHash!) { (s3Path, scaledImage, error) in
+            guard error == nil else {
+                debugPrint("error uploading item \(error.debugDescription)")
+                completion(false, error)
+                return
+            }
+            photoObject.s3Path = s3Path
+            photoObject.resizedImage = scaledImage?.pngData()
+            AWSClientFunctions.getPredictionResult(s3Path: s3Path!) { (predictionResult, error) in
+                guard error != nil else {
+                    debugPrint("prediction request Error \(error.debugDescription)")
+                    return
+                }
+                if predictionResult == nil {
+                    debugPrint("Prediction has not yield any result somwthing is wrong")
+                }
+                photoObject.classificationResult = predictionResult
+                do {
+                    try self.dataController.viewContext.save()
+                    completion(true, nil)
+                } catch {
+                    debugPrint("error saving \(error.localizedDescription)")
+                    completion(false, error)
+                }
+            }
         }
-        
     }
+    
+    
     
     fileprivate func changeImageName() {
         // create and add textfield

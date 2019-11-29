@@ -1,0 +1,48 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "whatsinthepictureb1ab6a14",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "MLClassification",
+    "apiName": "MLClassification",
+    "functionArns": [
+        {
+            "lambdaFunction": "whatsinthepictureb1ab6a14"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-whatsinthepicture-ios-201451-authRole",
+        "unAuthRoleName": "amplify-whatsinthepicture-ios-201451-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "whatsinthepictureb1ab6a14",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

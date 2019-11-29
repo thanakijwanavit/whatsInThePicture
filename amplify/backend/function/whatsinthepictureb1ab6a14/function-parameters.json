@@ -1,0 +1,12 @@
+{
+    "permissions": {
+        "api": {
+            "whatsinthepicture": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

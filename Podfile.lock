@@ -1,10 +1,23 @@
 PODS:
+  - AWSAPIGateway (2.12.2):
+    - AWSCore (= 2.12.2)
   - AWSAppSync (3.0.0):
     - AWSCore (~> 2.12.0)
     - ReachabilitySwift (~> 5.0.0)
     - SQLite.swift (~> 0.12.2)
     - Starscream (~> 3.0.2)
+  - AWSAuthCore (2.12.2):
+    - AWSCore (= 2.12.2)
+  - AWSCognitoIdentityProvider (2.12.2):
+    - AWSCognitoIdentityProviderASF (= 1.0.1)
+    - AWSCore (= 2.12.2)
+  - AWSCognitoIdentityProviderASF (1.0.1)
   - AWSCore (2.12.2)
+  - AWSMobileClient (2.12.2):
+    - AWSAuthCore (= 2.12.2)
+    - AWSCognitoIdentityProvider (= 2.12.2)
+  - AWSS3 (2.12.2):
+    - AWSCore (= 2.12.2)
   - ReachabilitySwift (5.0.0)
   - SQLite.swift (0.12.2):
     - SQLite.swift/standard (= 0.12.2)
@@ -12,24 +25,39 @@ PODS:
   - Starscream (3.0.6)
 
 DEPENDENCIES:
+  - AWSAPIGateway (~> 2.12.2)
   - AWSAppSync (~> 3.0.0)
   - AWSCore (~> 2.12.2)
+  - AWSMobileClient (~> 2.12.2)
+  - AWSS3 (~> 2.12.2)
 
 SPEC REPOS:
   trunk:
+    - AWSAPIGateway
     - AWSAppSync
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
     - AWSCore
+    - AWSMobileClient
+    - AWSS3
     - ReachabilitySwift
     - SQLite.swift
     - Starscream
 
 SPEC CHECKSUMS:
+  AWSAPIGateway: 155bcfba0323afd1fa5c612646bd755503b4b754
   AWSAppSync: 04f615ce0c3a0c815b7bf1ca3d47362a22ed12ca
+  AWSAuthCore: a67ecbfe4dfdb8470f85c31f9594476d5ed988a5
+  AWSCognitoIdentityProvider: 5ac7b7af7877e7a47585c08d6a0ef58bcd6314b6
+  AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
   AWSCore: bdc0933bcb1aca4a9af3352a9e6ec75b339faf71
+  AWSMobileClient: ed6cd3c6ecb935406bf392df81fc5b40f4660845
+  AWSS3: 3ab1e1b25d3522d7745efd2a57a98a86d7524bd5
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: d543da6d611e772efbc6109e64af339ebf25d0c2
+PODFILE CHECKSUM: 9af2a14e3a855edb86bfdfc0170d6609ec094af9
 
 COCOAPODS: 1.8.4

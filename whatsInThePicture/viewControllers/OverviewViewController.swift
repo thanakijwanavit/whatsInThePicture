@@ -20,6 +20,7 @@ class OverviewViewController: UIViewController{
     var dataController: DataController!
     var selectedPhotoModel: PhotoModel?
     var editMode: Bool = false
+    let debugMode = true
     
     
     @IBAction func addImage(_ sender: Any) {
@@ -43,9 +44,7 @@ class OverviewViewController: UIViewController{
         setUpPhotoCells()
         appTitle.text = "What's in my picture"
     }
-    
-    
-    
+
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,9 +56,7 @@ class OverviewViewController: UIViewController{
         super .setEditing(editing, animated: animated)
         setEditing(editMode, animated: true)
     }
-    
-    
-    
+
     
     fileprivate func reloadUI() {
         setUpFetchResultsController()
@@ -76,7 +73,7 @@ extension OverviewViewController:UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
         let photo = fetchedResultsController.object(at: indexPath)
         cell.activityIndicator.startAnimating()
-        cell.initWithPhoto(photo)
+        cell.initWithPhoto(photo,debug: self.debugMode)
         cell.viewContext = dataController.viewContext
         return cell
     }
