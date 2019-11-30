@@ -51,7 +51,6 @@ class ResultViewController:UIViewController{
         //check for classification result and s3 path
         if photoModel?.classificationResult == "waiting for classification" {
             if photoModel?.s3Path == nil {
-                
                 guard photoModel != nil else {
                     debugPrint("photoModel doesnt exist. data is corrupted please delete the image")
                     return
@@ -102,12 +101,9 @@ extension ResultViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "takeNewPhoto"{
-            
             let destination = segue.destination as! PictureTakingViewController
             destination.dataController = self.dataController
             destination.fetchedResultsController = self.fetchedResultsController
-            
-            
         }
     }
     
@@ -147,7 +143,6 @@ extension ResultViewController{
     
     fileprivate func configureUI() {
         pageTitle.text = photoModel?.name
-        
         let classificationResult = photoModel?.classificationResult
         if classificationResult != "waiting for classification"{
             debugPrint("classificationResult available \(String(describing: classificationResult))")
@@ -162,8 +157,5 @@ extension ResultViewController{
         } else {
             debugPrint("photo doesnt exist")
         }
-        
-        // set button name
-//        uploadDataButton.setTitle("upload", for: .normal)
     }
 }

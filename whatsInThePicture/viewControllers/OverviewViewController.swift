@@ -20,7 +20,7 @@ class OverviewViewController: UIViewController{
     var dataController: DataController!
     var selectedPhotoModel: PhotoModel?
     var editMode: Bool = false
-    let debugMode = true
+    let debugMode = false
     
     
     @IBAction func addImage(_ sender: Any) {
@@ -41,6 +41,7 @@ class OverviewViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        AWSClientFunctions.doInvokeAPI3()
         setUpPhotoCells()
         appTitle.text = "What's in my picture"
     }

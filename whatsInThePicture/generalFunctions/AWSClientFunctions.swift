@@ -95,9 +95,9 @@ class AWSClientFunctions {
     
     static func getPredictionResult(s3Path:String, completion: @escaping (String?, Error?)->Void){
         
-        
+        debugPrint("gettingPrediction Result")
         let queryString = ["s3Path": s3Path]
-        let forecastEndpoint = "some endpoint uri"  // put lambda edpoint here
+        let forecastEndpoint = "/items"  // put lambda edpoint here
         getLambda(queryString: queryString, endpoint: forecastEndpoint, completion: completion)
     }
     
@@ -106,7 +106,7 @@ class AWSClientFunctions {
 
     static func getLambda(queryString:[String:String], endpoint:String, completion: @escaping (String?, Error?)->Void) {
      // change the method name, or path or the query string parameters here as desired
-     let httpMethodName = "GET"
+     let httpMethodName = "POST"
      // change to any valid path you configured in the API
 //     let URLString = "/items"
 //     let queryStringParameters = ["key1":"{value1}"]
@@ -115,17 +115,17 @@ class AWSClientFunctions {
          "Accept": "application/json"
      ]
 
-//     let httpBody = "{ \n  " +
-//             "\"key1\":\"value1\", \n  " +
-//             "\"key2\":\"value2\", \n  " +
-//             "\"key3\":\"value3\"\n}"
+     let httpBody = "{ \n  " +
+        "\"s3Path\":\"\(queryString["s3Path"] ?? "public/images/iowSxPhEX8uPY2Eppq9G.png")\", \n  " +
+             "\"key2\":\"value2\", \n  " +
+             "\"key3\":\"value3\"\n}"
 
      // Construct the request object
      let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
              urlString: endpoint,
              queryParameters: queryString,
              headerParameters: headerParameters,
-             httpBody: nil)
+             httpBody: httpBody)
 
     // Create a service configuration
     let serviceConfiguration = AWSServiceConfiguration(region: AWSRegionType.APSoutheast1,
@@ -139,20 +139,30 @@ class AWSClientFunctions {
     let invocationClient = MLCLASSIFICATIONMLClassificationClient.client(forKey: "CloudLogicAPIKey")
 
     invocationClient.invoke(apiRequest).continueWith { (task: AWSTask) -> Any? in
-             if let error = task.error {
-                 print("Error occurred: \(error)")
-                 // Handle error here
-                 completion(nil,error)
-                 return nil
-             }
+        if let error = task.error {
+         print("Error occurred: \(error)")
+         // Handle error here
+         completion(nil,error)
+         return nil
+        }
 
-             // Handle successful result here
-             let result = task.result!
-             let responseString = String(data: result.responseData!, encoding: .utf8)
+        // Handle successful result here
+        let result = task.result!
+        let responseString = String(data: result.responseData!, encoding: .utf8)
+        debugPrint(result.rawResponse)
 
-             print(responseString!)
-             print(result.statusCode)
-             completion(responseString, nil)
+//             print(responseString!)
+        debugPrint("successfully getting prediction as \(String(describing: responseString?.debugDescription))")
+        if let responseString = responseString{
+            let responseJson = responseString.toResult()
+            debugPrint("parsed result is \(String(describing: responseJson))")
+            DispatchQueue.main.async {
+                completion(responseJson!.result, nil)
+            }
+            
+        }
+        
+             
 
              return nil
          }
@@ -183,7 +193,7 @@ class AWSClientFunctions {
               // On failed uploads, `error` contains the error object.
             if error == nil {
                 debugPrint("file upload complete to s3://\(bucketName)/\(uploadLocation)")
-                completion("s3://\(bucketName)/\(uploadLocation)", nil)
+                completion("\(uploadLocation)", nil)
             } else {
                 debugPrint("error: \(error.debugDescription)")
                 completion(nil, error)
@@ -225,6 +235,27 @@ class AWSClientFunctions {
                 completion(filePath,scaledImage, nil)
             }
         }
+    }
+    
+    
+    //New overloaded function that gets Cognito User Pools tokens
+    static func doInvokeAPI3(){
+        AWSMobileClient.default().getTokens { (tokens, err) in
+            self.doInvokeAPI3(token: tokens!.idToken!.tokenString!)
+        }
+    }
+
+    //Updated function with arguments and code updates
+    static func doInvokeAPI3(token:String) {
+
+        let headerParameters = [
+                //other headers
+                "Authorization" : token
+        ]
+
+        let serviceConfiguration = AWSServiceConfiguration(region: AWSRegionType.APSoutheast1,
+                                                               credentialsProvider: nil)
+
     }
 }
 

@@ -11,6 +11,8 @@
 		0435E88C238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435E888238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift */; };
 		0435E88D238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435E88A238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift */; };
 		0435E88F238B29F900D2A5A3 /* AWSClientFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435E88E238B29F900D2A5A3 /* AWSClientFunctions.swift */; };
+		044B9F0823927F3900EAD146 /* PredictionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B9F0723927F3900EAD146 /* PredictionResult.swift */; };
+		044B9F0B239281EA00EAD146 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B9F0A239281EA00EAD146 /* StringExtension.swift */; };
 		045547CF238C869900415C00 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045547CE238C869900415C00 /* UtilityFunctions.swift */; };
 		046D3DE8238977C80072D159 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D3DE7238977C80072D159 /* DataController.swift */; };
 		048B3E5F23894ABB0038EDA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B3E5E23894ABB0038EDA0 /* AppDelegate.swift */; };
@@ -38,6 +40,8 @@
 		0435E889238B282100D2A5A3 /* Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
 		0435E88A238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCLASSIFICATIONResponseSchema.swift; sourceTree = "<group>"; };
 		0435E88E238B29F900D2A5A3 /* AWSClientFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSClientFunctions.swift; sourceTree = "<group>"; };
+		044B9F0723927F3900EAD146 /* PredictionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionResult.swift; sourceTree = "<group>"; };
+		044B9F0A239281EA00EAD146 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		045547CE238C869900415C00 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		046D3DE7238977C80072D159 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		048B3E5B23894ABB0038EDA0 /* whatsInThePicture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whatsInThePicture.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,9 +107,18 @@
 			path = generalFunctions;
 			sourceTree = "<group>";
 		};
+		044B9F09239281D800EAD146 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				044B9F0A239281EA00EAD146 /* StringExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		048B3E5223894ABB0038EDA0 = {
 			isa = PBXGroup;
 			children = (
+				044B9F09239281D800EAD146 /* extensions */,
 				0435E885238B282100D2A5A3 /* generated-src */,
 				04240FB3238BAA2D005B932B /* keys */,
 				048B3E5D23894ABB0038EDA0 /* whatsInThePicture */,
@@ -174,6 +187,7 @@
 				048B3E7F23895DAD0038EDA0 /* PhotoCell.swift */,
 				048B3E8123895E030038EDA0 /* PhotoCollection.swift */,
 				04FC68342389ED1F00EAA349 /* PinterestLayout.swift */,
+				044B9F0723927F3900EAD146 /* PredictionResult.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,6 +346,7 @@
 				04A7C57B238B225F00445559 /* sampleVIewControllerForAmplify.swift in Sources */,
 				048B3E8023895DAD0038EDA0 /* PhotoCell.swift in Sources */,
 				048B3E7D23895A2C0038EDA0 /* PictureTakingViewController.swift in Sources */,
+				044B9F0823927F3900EAD146 /* PredictionResult.swift in Sources */,
 				0435E88C238B282100D2A5A3 /* MLCLASSIFICATIONMLClassificationClient.swift in Sources */,
 				048B3E5F23894ABB0038EDA0 /* AppDelegate.swift in Sources */,
 				0435E88F238B29F900D2A5A3 /* AWSClientFunctions.swift in Sources */,
@@ -343,6 +358,7 @@
 				045547CF238C869900415C00 /* UtilityFunctions.swift in Sources */,
 				048B3E86238967420038EDA0 /* PhotoModel.xcdatamodeld in Sources */,
 				048B3E8223895E030038EDA0 /* PhotoCollection.swift in Sources */,
+				044B9F0B239281EA00EAD146 /* StringExtension.swift in Sources */,
 				048B3E7B23895A1D0038EDA0 /* ResultViewController.swift in Sources */,
 				0435E88D238B282100D2A5A3 /* MLCLASSIFICATIONResponseSchema.swift in Sources */,
 			);

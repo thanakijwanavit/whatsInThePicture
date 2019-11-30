@@ -92,10 +92,11 @@ extension PictureTakingViewController{
             photoObject.s3Path = s3Path
             photoObject.resizedImage = scaledImage?.pngData()
             AWSClientFunctions.getPredictionResult(s3Path: s3Path!) { (predictionResult, error) in
-                guard error != nil else {
+                guard error == nil else {
                     debugPrint("prediction request Error \(error.debugDescription)")
                     return
                 }
+                debugPrint("result recieved by terminal function is \(String(describing: predictionResult))")
                 if predictionResult == nil {
                     debugPrint("Prediction has not yield any result somwthing is wrong")
                 }

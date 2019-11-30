@@ -1,63 +1,69 @@
 {
-	"api": {
-		"whatsinthepicture": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"authConfig": {
-					"additionalAuthenticationProviders": [],
-					"defaultAuthentication": {
-						"authenticationType": "API_KEY",
-						"apiKeyConfig": {
-							"description": "for the app whats in the picture",
-							"apiKeyExpirationDays": "265"
-						}
-					}
-				}
-			}
-		},
-		"MLClassification": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "whatsinthepictureb1ab6a14",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		}
-	},
-	"function": {
-		"whatsinthepictureb1ab6a14": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "api",
-					"resourceName": "whatsinthepicture",
-					"attributes": [
-						"GraphQLAPIIdOutput",
-						"GraphQLAPIEndpointOutput"
-					]
-				}
-			]
-		}
-	},
-	"auth": {
-		"cognito9dd1a75d": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"storage": {
-		"imageStorage": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+    "api": {
+        "whatsinthepicture": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "authConfig": {
+                    "additionalAuthenticationProviders": [],
+                    "defaultAuthentication": {
+                        "authenticationType": "API_KEY",
+                        "apiKeyConfig": {
+                            "description": "for the app whats in the picture",
+                            "apiKeyExpirationDays": "265"
+                        }
+                    }
+                }
+            }
+        },
+        "MLClassification": {
+            "service": "API Gateway",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "whatsinthepictureb1ab6a14",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ]
+                }
+            ]
+        }
+    },
+    "function": {
+        "whatsinthepictureb1ab6a14": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "dependsOn": [
+                {
+                    "category": "api",
+                    "resourceName": "whatsinthepicture",
+                    "attributes": [
+                        "GraphQLAPIIdOutput",
+                        "GraphQLAPIEndpointOutput"
+                    ]
+                }
+            ]
+        },
+        "classify": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "dependsOn": []
+        }
+    },
+    "auth": {
+        "cognito9dd1a75d": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "storage": {
+        "imageStorage": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation"
+        }
+    }
 }
