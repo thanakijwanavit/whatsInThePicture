@@ -21,12 +21,12 @@ This project aims to create a demo on how to deploy a machine learning model wit
 ## Use instruction
 
 * open the app
-![](http://file.hatari.cc:8080/rRUMg/overviewResultPage.PNG =100x20)
+![](http://file.hatari.cc:8080/rRUMg/overviewResultPage.PNG)
 * press plus sign to add an image to the app
 * after you are satisfied with the image, you should press complete, otherwise press and hold the image to retake
 * result of classification will be displayed on top of the picture
-![](http://file.hatari.cc:8080/kbRzZ/classificationPage.PNG =100x20)
-![](http://file.hatari.cc:8080/10dVKt/classificationPage2.PNG =100x20)
+![](http://file.hatari.cc:8080/kbRzZ/classificationPage.PNG)
+![](http://file.hatari.cc:8080/10dVKt/classificationPage2.PNG)
 
 
 ## Functions to add 
