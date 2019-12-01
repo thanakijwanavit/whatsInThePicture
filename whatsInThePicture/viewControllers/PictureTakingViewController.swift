@@ -21,10 +21,15 @@ class PictureTakingViewController:UIViewController{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
+    @IBOutlet weak var completeButton: UIButton!
+    
+    
     @IBAction func completeTakingPhoto(_ sender: UIButton) {
         debugPrint("uploadingStart")
         DispatchQueue.main.async {
             self.imageView.isHidden = true
+            self.completeButton.isHidden = true
             self.activityIndicator.startAnimating()
         }
         saveToCoreData { (success, error) in
@@ -98,9 +103,12 @@ extension PictureTakingViewController{
                 }
                 debugPrint("result recieved by terminal function is \(String(describing: predictionResult))")
                 if predictionResult == nil {
-                    debugPrint("Prediction has not yield any result somwthing is wrong")
+                    debugPrint("Prediction has not yield any result something is wrong")
                 }
                 photoObject.classificationResult = predictionResult
+                DispatchQueue.main.async {
+                    self.completeButton.isHidden = false
+                }
                 do {
                     try self.dataController.viewContext.save()
                     completion(true, nil)

@@ -20,7 +20,16 @@ class OverviewViewController: UIViewController{
     var dataController: DataController!
     var selectedPhotoModel: PhotoModel?
     var editMode: Bool = false
-    let debugMode = false
+    var debugMode = true
+    
+    @IBOutlet weak var debugModeButton: UISwitch!
+    
+    
+    @IBAction func changeDebugMode(_ sender: Any) {
+        debugMode = debugModeButton.isOn
+        UserDefaults.standard.set(debugMode, forKey: "debugMode")
+        reloadUI()
+    }
     
     
     @IBAction func addImage(_ sender: Any) {
@@ -41,20 +50,25 @@ class OverviewViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.debugMode = UserDefaults.standard.bool(forKey: "debugMode")
+        
 //        AWSClientFunctions.doInvokeAPI3()
-        setUpPhotoCells()
+        
         appTitle.text = "What's in my picture"
+        navigationController?.delegate = self
     }
 
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadUI()
+        setUpPhotoCells()
+        self.reloadUI()
+        
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
-        super .setEditing(editing, animated: animated)
+        super.setEditing(editing, animated: animated)
         setEditing(editMode, animated: true)
     }
 
@@ -80,13 +94,33 @@ extension OverviewViewController:UICollectionViewDataSource{
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return fetchedResultsController.sections?.count ?? 1
+        return self.fetchedResultsController.sections?.count ?? 1
     }
 }
 
 /// set up coredata stuff
 extension OverviewViewController: NSFetchedResultsControllerDelegate{
     
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        <#code#>
+//    }
+//    
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        <#code#>
+//    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            self.photoCollection.deleteItems(at: [indexPath!])
+            print("delete is called")
+        case .insert:
+            self.photoCollection.insertItems(at: [newIndexPath!])
+            print("insert is called")
+        default:
+            break
+        }
+    }
     
     fileprivate func setUpFetchResultsController(){
         let fetchRequest: NSFetchRequest<PhotoModel> = PhotoModel.fetchRequest()
@@ -97,6 +131,8 @@ extension OverviewViewController: NSFetchedResultsControllerDelegate{
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
+
+            
         } catch {
             print("error fetching data \(error.localizedDescription)")
         }
@@ -141,6 +177,8 @@ extension OverviewViewController{
 
 
 extension OverviewViewController:UICollectionViewDelegate{
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !self.editMode {
             let selectedPhotoModel = fetchedResultsController.object(at: indexPath)
@@ -160,27 +198,10 @@ extension OverviewViewController:UICollectionViewDelegate{
 }
 
 
-//extension OverviewViewController:NSFetchedResultsControllerDelegate{
-//    
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        photoCollection.endEditing(false)
-//    }
-//    
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        photoCollection.editing
-//    }
-//    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//        switch type {
-//        case .delete:
-//            photoCollection.deleteItems(at: [indexPath!])
-//            print("delete is called")
-//        case .insert:
-//            photoCollection.insertItems(at: [newIndexPath!])
-//            print("insert is called")
-//        default:
-//            break
-//        }
-//    }
-//    
-//}
+extension OverviewViewController:UINavigationControllerDelegate{
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        if let controller = viewController as? OverviewViewController {
+            controller.photoCollection.reloadData()
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "UserAgent": "aws-amplify/cli",
+    "Version": "0.1.0",
+    "IdentityManager": {
+        "Default": {}
+    },
+    "AppSync": {
+        "Default": {
+            "ApiUrl": "https://ayxelb7zw5hojo4grwocey5oqi.appsync-api.ap-southeast-1.amazonaws.com/graphql",
+            "Region": "ap-southeast-1",
+            "AuthMode": "API_KEY",
+            "ApiKey": "da2-4ervpcq3fjdy7fqftdljpust44",
+            "ClientDatabasePrefix": "whatsinthepicture_API_KEY"
+        }
+    },
+    "CredentialsProvider": {
+        "CognitoIdentity": {
+            "Default": {
+                "PoolId": "ap-southeast-1:e5b58448-20eb-40fc-8777-0816a6a8068e",
+                "Region": "ap-southeast-1"
+            }
+        }
+    },
+    "CognitoUserPool": {
+        "Default": {
+            "PoolId": "ap-southeast-1_srPYCAlrN",
+            "AppClientId": "23js180dt01dreirr4unue0kr5",
+            "AppClientSecret": "u64u1h4moda85fbmmltjcd8i3g4gqm69shjg3ijhsg82d62etqu",
+            "Region": "ap-southeast-1"
+        }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "whatsinthepictureimagestorage-ios",
+            "Region": "ap-southeast-1"
+        }
+    }
+}

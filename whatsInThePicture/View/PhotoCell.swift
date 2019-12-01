@@ -28,7 +28,7 @@ class PhotoCell:UICollectionViewCell{
                 self.imageToDisplay.image = UIImage(data: photo.imageData! as Data)
                 if debug{
                     debugPrint("debugging, displaying aws path")
-                    self.title.text = photo.s3Path
+                    self.title.text = photo.classificationResult
                 } else {
                     self.title.text = photo.name
                 }
