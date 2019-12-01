@@ -25,15 +25,14 @@ class ResultViewController:UIViewController{
     
     
     
-    //debug bbutton for testing uploading image
-    
-    @IBOutlet weak var uploadDataButton: UIButton!
     
     
-    
-    
-    @IBAction func uploadDataButtonClicked(_ sender: Any) {
-//        convertAndUploadToS3()
+    @IBAction func deleteButtonClicked(_ sender: Any) {
+        /// delete file button clicked
+        debugPrint("deleteButtonClicket")
+        let rootViewController = navigationController?.viewControllers.first as! OverviewViewController
+        rootViewController.imageToDeleteIndexPath = fetchedResultsController.indexPath(forObject: photoModel!)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     override func viewDidLoad() {

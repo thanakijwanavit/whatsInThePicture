@@ -44,4 +44,7 @@ class UtilityFunctions {
 
         return newImage!
     }
+    
+    
+//    static func displayErrorPopup(text:String, header:String)
 }

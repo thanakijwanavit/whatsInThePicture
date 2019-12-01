@@ -34,6 +34,10 @@ class PictureTakingViewController:UIViewController{
         }
         saveToCoreData { (success, error) in
             guard error == nil else {
+                DispatchQueue.main.async {
+                    self.displayError(text: "error uploading file /(error)", title: "connection error")
+                }
+                
                 return
             }
             debugPrint("finishedTakingPhotoCalled")
@@ -54,7 +58,9 @@ class PictureTakingViewController:UIViewController{
     }
 
     override func viewDidLoad() {
+        activityIndicator.hidesWhenStopped = true
         activityIndicator.stopAnimating()
+        completeButton.isHidden = true
         pictureProcessingComplete = false
         titleName.text = randomString(length: 5)
         userChooseImage()
@@ -75,6 +81,7 @@ extension PictureTakingViewController{
         let resultViewController = self.navigationController?.viewControllers[currentViewControllerIndex!-2] as! ResultViewController
         resultViewController.pageTitle.text = "Result of picture taken"
         resultViewController.objectHash = self.objectHash
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -98,7 +105,9 @@ extension PictureTakingViewController{
             photoObject.resizedImage = scaledImage?.pngData()
             AWSClientFunctions.getPredictionResult(s3Path: s3Path!) { (predictionResult, error) in
                 guard error == nil else {
+                    
                     debugPrint("prediction request Error \(error.debugDescription)")
+                    self.displayError(text: "prediction request Error \(error.debugDescription)", title: "connection error")
                     return
                 }
                 debugPrint("result recieved by terminal function is \(String(describing: predictionResult))")
@@ -111,7 +120,10 @@ extension PictureTakingViewController{
                 }
                 do {
                     try self.dataController.viewContext.save()
+                    // reload data at rootViewcontroller
+                    
                     completion(true, nil)
+                    
                 } catch {
                     debugPrint("error saving \(error.localizedDescription)")
                     completion(false, error)
@@ -176,6 +188,7 @@ extension PictureTakingViewController:UIImagePickerControllerDelegate, UINavigat
         DispatchQueue.main.async {
             self.imageView.image = image
             self.currentImage = image
+            self.completeButton.isHidden = false
         }
         pictureProcessingComplete = true
     }
@@ -250,6 +263,22 @@ extension PictureTakingViewController{
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
 
         self.present(alert, animated: false, completion: nil)
+    }
+    
+    
+    func displayError(text:String, title:String){
+        // create and add textfield
+        let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (pAction) in
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        // show alert controller
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

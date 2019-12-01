@@ -269,7 +269,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="dEt-4z-a4c">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="trash" id="GAD-TY-wC9"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="trash" id="GAD-TY-wC9">
+                            <connections>
+                                <action selector="deleteButtonClicked:" destination="ljL-j2-kv6" id="Sez-AK-VTf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="classificationResultLabel" destination="w6V-BI-aHj" id="x4z-x5-KF9"/>

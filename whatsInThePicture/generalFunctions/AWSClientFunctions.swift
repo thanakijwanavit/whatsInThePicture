@@ -211,7 +211,8 @@ class AWSClientFunctions {
              completionHandler: completionHandler).continueWith {
                 (task) -> AnyObject? in
                     if let error = task.error {
-                       debugPrint("Error: \(error.localizedDescription)")
+                        debugPrint("Error: \(error.localizedDescription)")
+                        completion(nil, error)
                     }
 
                     if let _ = task.result {

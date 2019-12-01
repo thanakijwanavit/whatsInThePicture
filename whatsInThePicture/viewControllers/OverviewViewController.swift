@@ -21,6 +21,7 @@ class OverviewViewController: UIViewController{
     var selectedPhotoModel: PhotoModel?
     var editMode: Bool = false
     var debugMode = true
+    var imageToDeleteIndexPath : IndexPath?
     
     @IBOutlet weak var debugModeButton: UISwitch!
     
@@ -55,13 +56,17 @@ class OverviewViewController: UIViewController{
 //        AWSClientFunctions.doInvokeAPI3()
         
         appTitle.text = "What's in my picture"
-        navigationController?.delegate = self
+
     }
 
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.delegate = self
+        if let imageToDeleteIndexPath = imageToDeleteIndexPath {
+            deleteImage(indexPath: imageToDeleteIndexPath)
+        }
         setUpPhotoCells()
         self.reloadUI()
         
@@ -81,6 +86,7 @@ class OverviewViewController: UIViewController{
 
 extension OverviewViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        debugPrint("number of objects in section is \(fetchedResultsController.sections?[section].numberOfObjects ?? 0)")
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
@@ -101,13 +107,7 @@ extension OverviewViewController:UICollectionViewDataSource{
 /// set up coredata stuff
 extension OverviewViewController: NSFetchedResultsControllerDelegate{
     
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        <#code#>
-//    }
-//    
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        <#code#>
-//    }
+
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
@@ -131,8 +131,6 @@ extension OverviewViewController: NSFetchedResultsControllerDelegate{
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
-
-            
         } catch {
             print("error fetching data \(error.localizedDescription)")
         }
@@ -199,9 +197,20 @@ extension OverviewViewController:UICollectionViewDelegate{
 
 
 extension OverviewViewController:UINavigationControllerDelegate{
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let controller = viewController as? OverviewViewController {
             controller.photoCollection.reloadData()
         }
+    }
+    
+    func deleteImage(indexPath:IndexPath){
+        let selectedPhotoToDelete = fetchedResultsController.object(at: indexPath)
+        dataController.viewContext.delete(selectedPhotoToDelete)
+        do { try dataController.viewContext.save()
+        } catch {
+            print("saving error \(error.localizedDescription)")
+        }
+        print("image removed from memory")
+        reloadUI()
     }
 }

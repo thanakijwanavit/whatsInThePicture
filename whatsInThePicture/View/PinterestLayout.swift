@@ -105,8 +105,4 @@ class PinterestLayout: UICollectionViewLayout{
     }
     
     
-//    override func layoutAttributesForItem(at indexPath: IndexPath)
-//        -> UICollectionViewLayoutAttributes? {
-//      return cache[indexPath.item]
-//    }
 }
